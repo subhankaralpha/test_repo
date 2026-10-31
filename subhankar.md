@@ -63,7 +63,7 @@ Subhankar is the **creator and sole committer** of the repository so far. Their 
 This module shows how Subhankar approaches production-minded engineering:
 
 - **Async I/O**: uses `asyncio` with the async Google GenAI client (`client.aio`) for uploads and generation.
-- **Resilient retries**: retries transient errors (HTTP `503`/`429`, "unavailable", "resource exhausted") up to 6 times with **exponential backoff**, starting at a 2-second delay.
+- **Resilient retries**: retries transient errors (HTTP `503`/`429`, "unavailable", "resource exhausted", "try again") for up to 6 attempts with **exponential backoff**, starting at a 2-second delay.
 - **Resource cleanup**: a `finally` block always deletes the uploaded file from Gemini storage, even when something fails.
 - **Externalized prompts**: the OCR prompt lives in a YAML template (`prompts/ocr.yaml`) instead of being hard-coded.
 - **Structured error reporting**: failures come back as structured dictionaries (`{"error": ..., "detail": ...}`) instead of raw exceptions, so benchmark runs can keep going.
